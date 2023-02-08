@@ -2,7 +2,7 @@ FROM arm64v8/ubuntu
 ENV TZ=Australia/Sydney
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update 
-RUN apt-get install -y curl vim python3 python3-pip git libffi-dev libssl-dev supervisor openssh-server 
+RUN apt-get install -y curl vim python3 python3-pip libffi-dev libssl-dev supervisor openssh-server 
 RUN apt-get install -y ansible
 COPY id_rsa.pub /root/.ssh/id_rsa.pub
 COPY id_rsa /root/.ssh/id_rsa 
