@@ -1,14 +1,27 @@
-FROM arm64v8/ubuntu
-ENV TZ=Australia/Sydney
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN apt-get update 
-RUN apt-get install -y curl vim python3 python3-pip libffi-dev libssl-dev supervisor openssh-server 
-RUN apt-get install -y ansible
-COPY id_rsa.pub /root/.ssh/id_rsa.pub
-COPY id_rsa /root/.ssh/id_rsa 
-RUN cat /root/.ssh/id_rsa.pub > /root/.ssh/authorized_keys 
-RUN chmod 600 -R /root/.ssh/ 
-RUN service ssh start
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf 
-EXPOSE 22 
-CMD ["/usr/bin/supervisord"]
+FROM ubuntu:20.04
+LABEL maintainer="ashvants"
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    git \
+    ansible \
+    apt-transport-https \
+    ca-certificates-java \
+    curl \
+    python3 \
+    python3-pip \
+    init \
+    openssh-server openssh-client \
+    unzip \
+    rsync \
+    sudo \
+    fuse snapd snap-confine squashfuse \
+    && rm -rf /var/lib/apt/lists/*
+
+# Configure udev for docker integration
+RUN dpkg-divert --local --rename --add /sbin/udevadm && ln -s /bin/true /sbin/udevadm
+
+RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+
+ENTRYPOINT ["/sbin/init"]
