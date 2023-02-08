@@ -1,0 +1,8 @@
+build image
+docker build -t ansibleimage1:1.0 
+
+copy ssh-id
+
+ssh-copy-id - root@10.0.0.2
+
+git clone -b 21.11.0 https://github.com/ansible/awx.git
