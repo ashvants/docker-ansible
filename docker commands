@@ -5,4 +5,6 @@ copy ssh-id
 
 ssh-copy-id - root@10.0.0.2
 
+ssh-keygen -q -t rsa -N '' -f ./id_rsa <<<y 2>&1 >/dev/null
+
 git clone -b 21.11.0 https://github.com/ansible/awx.git
