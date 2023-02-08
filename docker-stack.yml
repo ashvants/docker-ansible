@@ -1,0 +1,11 @@
+version: '3'
+services:
+      ansible:
+        container_name: ansible
+        image: registry.gitlab.com/ashvants/docker-ansible:main
+        tty: true
+        stdin_open: true
+        ports:
+          - "9010:22/tcp"
+        volumes:
+          - '/docker-storage/ansible/files:/etc/ansible'

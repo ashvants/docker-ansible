@@ -8,3 +8,12 @@ ssh-copy-id - root@10.0.0.2
 ssh-keygen -q -t rsa -N '' -f ./id_rsa <<<y 2>&1 >/dev/null
 
 git clone -b 21.11.0 https://github.com/ansible/awx.git
+
+docker build -t docker-ansible .
+docker run --rm -it docker-ansible ansible --version
+
+We can then, run the container image as a daemon:
+
+docker run --rm -itd --name test-ansible docker-ansible
+
+docker exec -it test-ansible /bin/bash
