@@ -24,4 +24,6 @@ RUN dpkg-divert --local --rename --add /sbin/udevadm && ln -s /bin/true /sbin/ud
 
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
+EXPOSE 22 
+
 ENTRYPOINT ["/sbin/init"]
