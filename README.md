@@ -1,4 +1,4 @@
 # docker-ansible
 create docker image for ansible
 
-test ci
+test ci ci
