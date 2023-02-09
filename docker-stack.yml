@@ -1,6 +1,7 @@
 version: '3'
 services:
       ansible:
+        privileged: true
         container_name: ansible
         image: registry.gitlab.com/ashvants/docker-ansible:main
         tty: true

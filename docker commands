@@ -3,7 +3,7 @@ docker build -t ansibleimage1:1.0
 
 copy ssh-id
 
-ssh-copy-id - root@10.0.0.2
+ssh-copy-id - root@10.0.0.2 //alows password less auth from ansible to 10.0.0.2 as root
 
 ssh-keygen -q -t rsa -N '' -f ./id_rsa <<<y 2>&1 >/dev/null
 
@@ -17,3 +17,12 @@ We can then, run the container image as a daemon:
 docker run --rm -itd --name test-ansible docker-ansible
 
 docker exec -it test-ansible /bin/bash
+
+vault operator init
+vault operator unseal <shamir-key1>
+vault operator unseal <shamir-key2>
+vault operator unseal <shamir-key3>
+vault login <initial-root-token>
+vault login
+create secret in kv
+vault kv put secret/t1 kv="$(cat /vault/data/id_rsa)"
