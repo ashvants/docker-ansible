@@ -21,7 +21,6 @@ ENV PACKER_VERSION=${PACKER_VERSION}
 
 RUN apt-get update \
     && apt-get install -y ansible curl python3 python3-pip python3-boto unzip  \
-    #&& pip3 install --upgrade awscli==${AWSCLI_VERSION} \
     && curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
     && curl -LO https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_arm64.zip \
     && unzip '*.zip' -d /usr/local/bin \
@@ -30,7 +29,7 @@ RUN apt-get update \
 
 CMD    ["/bin/bash"]
 
-
+ # pip3 install --upgrade awscli==${AWSCLI_VERSION} \
 # RUN apt-get update && apt-get install -y \
 #     git \
 #     ansible \
