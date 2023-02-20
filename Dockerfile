@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu
+FROM ubuntu:latest@sha256:a6be1f66f70f66ef43503292e38ccbfc14f2d5464e7736344783a8fc7bb339a8
 #ubuntu:20.04
 LABEL maintainer="ashvants"
 
