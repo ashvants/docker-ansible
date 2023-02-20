@@ -19,7 +19,9 @@ ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
 
-RUN apt-get update && apt-get dist-upgrade -y \
+RUN apt-get update && apt-get dist-upgrade -y
+
+RUN apt-get install -y \
     git \
     curl \
     python3 python3-pip \
