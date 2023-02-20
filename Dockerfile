@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM arm64v8/ubuntu
 #ubuntu:20.04
 LABEL maintainer="ashvants"
 
