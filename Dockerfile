@@ -19,10 +19,41 @@ ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
 
-RUN apt-get update
+RUN apt-get update && apt-get dist-upgrade -y \
+    git \
+    curl \
+    python3 python3-pip \
+    apt-transport-https \
+    init \
+    openssh-server openssh-client \
+    unzip \
+    rsync \
+    sudo       
+
+RUN python3 -m pip install ansible \
+    && curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
+    && curl -LO https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_arm64.zip \
+    && unzip '*.zip' -d /usr/local/bin \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* *.zip
+
+CMD    ["/bin/bash"]    
+ 
+
+   
+    #  \
+    # ca-certificates-java \
+    
+
+    
+    # init \
+    # openssh-server openssh-client \
+    # unzip \
+    # rsync \
+    # sudo \
+    # fuse snapd snap-confine squashfuse
 
 
-CMD    ["/bin/bash"]
 
  # pip3 install --upgrade awscli==${AWSCLI_VERSION} \
 # RUN apt-get update && apt-get install -y \
