@@ -20,7 +20,7 @@ ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
 
 RUN apt-get update \
-    && apt-get install -y git curl python3 python3-pip apt-transport-https init openssh-server openssh-client unzip rsync sudo       
+    && apt-get install -y git curl python3 python3-pip unzip
 
 RUN python3 -m pip install ansible \
     && curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
