@@ -1,4 +1,4 @@
-FROM ubuntu:latest@sha256:a6be1f66f70f66ef43503292e38ccbfc14f2d5464e7736344783a8fc7bb339a8
+FROM ubuntu:latest@sha256:61bd0b97000996232eb07b8d0e9375d14197f78aa850c2506417ef995a7199a7
 #ubuntu:20.04
 LABEL maintainer="ashvants"
 
