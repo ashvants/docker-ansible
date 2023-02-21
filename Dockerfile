@@ -1,4 +1,6 @@
-FROM ubuntu:latest@sha256:61bd0b97000996232eb07b8d0e9375d14197f78aa850c2506417ef995a7199a7
+FROM ubuntu:20.04@sha256:bf9913320006dfc72a4b519ce600a4063529d242ff5b78facb2bc43ce91260d7
+
+# @sha256:61bd0b97000996232eb07b8d0e9375d14197f78aa850c2506417ef995a7199a7
 #ubuntu:20.04
 LABEL maintainer="ashvants"
 
@@ -19,7 +21,8 @@ ENV AWSCLI_VERSION=${AWSCLI_VERSION}
 ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
 ENV PACKER_VERSION=${PACKER_VERSION}
 
-RUN apt-get install -y git curl python3 python3-pip unzip
+RUN apt-get update \
+    && apt-get install -y git curl python3 python3-pip unzip
 
 RUN python3 -m pip install ansible \
     && curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip \
